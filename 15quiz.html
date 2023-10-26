@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>.quiz-container {
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    #question {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    #choices {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin-top: 20px;
+    }
+    
+    #results {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    </style>
+    
+</head>
+<body>
+    
+    <div class="quiz-container">
+        <h1>JavaScript Quiz</h1>
+        <div id="quiz">
+            <div id="question">
+                <!-- Вопрос будет отображаться здесь -->
+            </div>
+            <div id="choices">
+                <!-- Варианты ответов будут отображаться здесь -->
+            </div>
+        </div>
+        <button id="next-button">Next</button>
+        <div id="results"></div>
+    </div>
+    <a href="15.html">Home</a>
+    <script> const questions = [
+        {
+            question: "Какая функция используется для вывода текста в консоль в JavaScript?",
+            choices: ["log()", "print()", "display()", "show()"],
+            correctAnswer: 0
+        },
+        {
+            question: "Как объявить переменную в JavaScript?",
+            choices: ["declare", "let", "var", "variable"],
+            correctAnswer: 1
+        },
+        {
+            question: "Как добавить элемент в конец массива в JavaScript?",
+            choices: ["add()", "push()", "insert()", "append()"],
+            correctAnswer: 1
+        }
+    ];
+    
+    let currentQuestion = 0;
+    let score = 0;
+    
+    const questionElement = document.getElementById('question');
+    const choicesElement = document.getElementById('choices');
+    const nextButton = document.getElementById('next-button');
+    const resultsElement = document.getElementById('results');
+    
+    function displayQuestion() {
+        const current = questions[currentQuestion];
+        questionElement.textContent = current.question;
+        choicesElement.innerHTML = '';
+    
+        for (let i = 0; i < current.choices.length; i++) {
+            const choice = document.createElement('button');
+            choice.textContent = current.choices[i];
+            choice.addEventListener('click', () => checkAnswer(i));
+            choicesElement.appendChild(choice);
+        }
+    }
+    
+    function checkAnswer(selectedIndex) {
+        if (selectedIndex === questions[currentQuestion].correctAnswer) {
+            score++;
+        }
+    
+        currentQuestion++;
+    
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            showResults();
+        }
+    }
+    
+    function showResults() {
+        questionElement.style.display = 'none';
+        choicesElement.style.display = 'none';
+        nextButton.style.display = 'none';
+        resultsElement.textContent = `Вы правильно ответили на ${score} из ${questions.length} вопросов.`;
+    }
+    
+    nextButton.addEventListener('click', () => {
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            showResults();
+        }
+    });
+    
+    displayQuestion();</script>
+</body>
+</html>

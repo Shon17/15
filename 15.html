@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(182, 201, 249); padding-left: 30px; font-family:'Trebuchet MS';
+        }
+        .task {
+            display: inline-block;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .solution {
+            display: none;
+            margin: 10px 0;
+        }
+        div{ background-color: white; overflow: auto; 
+        }
+    </style>
+</head>
+<body>
+    <h1>js задачки </h1> <hr> <h3>базовый синтаксис js</h3>
+    <ul>
+        <li>идентификаторы, зарезервированные слова</li>
+        <li>тип данных js, литералы</li>
+        <li>выражения и операторы</li>
+        <li>инструкции</li>
+    </ul>
+    <div class="task" onclick="showsol(1)">
+        <h3>Вычисление факториала</h3>
+      
+    </div>
+    <div class="solution" id="sol1">
+        <p><script>
+            function fact(n){
+        if(n===1){
+            return n;
+            
+        } else if(n<=0){
+            alert("chislo dolzhno byt polozhitelnim");
+            document.write(fact(+prompt("vvedite")));
+        }
+        else{
+        n=n*fact(n-1);
+        return n;
+        document.write(fact(+prompt("vvedite")));}
+    } 
+    document.write(fact(+prompt("vvedite")));
+        </script></p>
+    </div>
+    <div class="task" onclick="showsol(2)">
+        <h3>Простое число</h3>
+    </div>
+    <div class="solution" id="sol2">
+        <p><script> 
+        function isPrime(number) {
+            if (number <= 1) {
+                return false;
+            }
+            if (number <= 3) {
+                return true;
+            }
+            
+            if (number % 2 === 0 || number % 3 === 0) {
+                return false;
+            }
+            
+            for (let i = 5; i * i <= number; i += 6) {
+                if (number % i === 0 || number % (i + 2) === 0) {
+                    return false;
+                }
+            }
+            
+            return true;
+        } document.write(isPrime(+prompt("vvedite chislo")));
+        </script></p>
+    </div>
+    <div class="task" onclick="showsol(3)">
+        <h3>КАЛЬКУЛЯТОООООООООООООООООООР</h3>
+    </div>
+    <div class="solution" id="sol3">
+        <p><a href="15calc.html">ссылка на калькулятор</a></p>
+    </div>
+    <div class="task" onclick="showsol(4)">
+        <h3>КВИИИИИИИИИИИИИИИИИИИИИИИИИИИИИИИИЗ</h3>
+    </div>
+    <div class="solution" id="sol4">
+        <p><a href="15quiz.html">ссылка на квиз</a></p>
+    </div>
+    <script>
+        function showsol(taskNumber){
+            var solution = document.getElementById('sol' + taskNumber);
+            if (solution.style.display === 'none') {
+                solution.style.display = 'inline-block';
+               
+            } else {
+                solution.style.display = 'none';
+                
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>
